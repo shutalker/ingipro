@@ -5,7 +5,7 @@ console.log('Initial array: ', arr);
 
 function drop(arr, i) {
 
-    let replicatedArr = Array.from(arr);
+    const replicatedArr = Array.from(arr);
 
     replicatedArr.splice(i, 1);
     return replicatedArr;
