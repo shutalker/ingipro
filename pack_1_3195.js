@@ -1,3 +1,5 @@
+'use strict'
+
 function randomNumber() {
     //random delay between 0 and 10000 ms (0 and 10 seconds)
     let randomDelay = Math.floor(Math.random() * 10000);
@@ -6,9 +8,9 @@ function randomNumber() {
     let randomNum = Math.floor(Math.random() * 100) - 50;
 
     //initial time of a random time interval
-    let currentTime = new Date().getTime();
+    let currentTime = Date.now();
 
-    while(new Date().getTime() <= currentTime + randomDelay) {}
+    while (Date.now() <= currentTime + randomDelay);
 
     return randomNum;
 }
