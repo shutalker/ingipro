@@ -1,18 +1,22 @@
+'use strict'
+
 const arr1 = [1, 2, 3, 4, 5, 5, 5, 5]
-const arr2 = [1, 5, 6, 7, 10, 21, 2, 3]
+const arr2 = [1, 5, 6, 7, 21, 10, 2, 3]
 
 function union(arr1, arr2) {
-    let resultArr = arr1.concat(arr2);
+    const concatinatedArr = arr1.concat(arr2);
+    const unifierObj = {};
 
-    //removing all duplicates from concatinated array
-    resultArr.forEach(function removeDuplicate(currVal, currIdx, arr) {
-        for(i = 0; i < arr.length; i++) {
-            if((i !== currIdx) && (arr[i] === currVal))
-                arr.splice(i--, 1);
-        }
+    concatinatedArr.forEach((currVal, currIdx, arr) => {
+        unifierObj[currVal] = true;
     });
 
-    return resultArr.sort();
+    const resultArr = Object.keys(unifierObj);
+    resultArr.forEach((currVal, currIdx, arr) => {
+        arr[currIdx] = +currVal;
+    });
+
+    return resultArr;
 }
 
 console.log(union(arr1, arr2));
