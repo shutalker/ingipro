@@ -1,12 +1,13 @@
-function range(start, stop, step) {
-    let arr = [];
+'use strict'
 
-    if(arguments.length > 3 || arguments.length < 1) {
-        console.log("Function signature: range([start,] stop [, step])");
-        return null;
+function range(start, stop, step) {
+    const arr = [];
+
+    if (arguments.length > 3 || arguments.length < 1) {
+        throw new SyntaxError('Function signature: range([start, ]stop[, step])');
     } else {
 
-        switch(arguments.length) {
+        switch (arguments.length) {
             case 1:
                 stop = start;
                 start = 0;
@@ -25,14 +26,14 @@ function range(start, stop, step) {
                 //incorrect situations: start < stop and step < 0
                 //                      start > stop and step > 0
                 //                      step == 0
-                if( (step == 0) || (((stop - start) * step) < 0) ) {
-                    console.log("Step have incorrect value: ", step);
-                    return null;
+                if ((step == 0) || (((stop - start) * step) < 0)) {
+                    throw new RangeError('Step have incorrect value');
                 }
         }
     }
 
-    for(i = start; Math.abs(i) <= Math.abs(stop); i += step) {
+    for (let i = start; (Math.abs(i) < Math.abs(stop)) || ((i * stop) < 0);
+         i +=  step) {
         arr.push(i);
     }
 
@@ -41,8 +42,7 @@ function range(start, stop, step) {
 
 console.log(range(10));
 console.log(range(-15));
-console.log(range(2, -7));
-console.log(range(-3, 3));
+console.log(range(1, 11));
+console.log(range(0, 10, 3));
 console.log(range(-3, 3, 3));
-console.log(range(-3, 3, -5)); //error
-console.log(range()); //error
+console.log(range(2, -7));
